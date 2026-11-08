@@ -14,9 +14,6 @@ namespace AchievementHUD
         private static PropertyInfo achievementListProperty = null;
         private static PropertyInfo unlockedProperty = null;
 
-        private int lastLoggedTick = 0;
-
-
         private bool initialCheckDone = false;
         private int lastCheckedTick = 0;
         private const int CheckIntervalTicks = 250; // Roughly 4 seconds at 1x
@@ -55,14 +52,10 @@ namespace AchievementHUD
 
             if (hasValidData)
             {
-                if (AchievementHUDMod.settings.debugLogging && Find.TickManager.TicksGame > lastLoggedTick + 300)
-                {
-                    lastLoggedTick = Find.TickManager.TicksGame;
-                    Log.Message($"[AchievementHUD Debug] Unlocked: {cachedUnlockedCount} | Total Tracked: {cachedTotalCount}");
-                }
-
                 float boxWidth = 160f;
                 float boxHeight = 60f;
+
+                // Pin to top right, add options to move it later
                 float rightPadding = 20f;
                 float topPadding = 20f;
 
